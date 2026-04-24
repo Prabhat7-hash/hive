@@ -2,22 +2,6 @@
 
 from framework.orchestrator import NodeSpec
 
-def filter_and_rank_jobs(jobs, skills):
-    if not skills:
-        return jobs
-
-    def score(job):
-        return sum(
-            1 for skill in skills
-            if skill.lower() in job.get("description", "").lower()
-        )
-
-    filtered = [
-        job for job in jobs
-        if any(skill.lower() in job.get("description", "").lower() for skill in skills)
-    ]
-
-    return sorted(filtered, key=score, reverse=True)
 
 # Node 1: Intake (simple)
 # Collect resume and identify strongest role types.
